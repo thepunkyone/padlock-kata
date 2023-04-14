@@ -76,7 +76,6 @@ const combinationsThatAddUpToTheTotalSumOfDigitsFrom = (
 };
 
 const combinationsWithNonUniqueDigitsFrom = (
-  padlockDigits,
   candidatesThatAddUpToTheTotalSumOfDigits
 ) => {
   return candidatesThatAddUpToTheTotalSumOfDigits.filter((candidate) => {
@@ -102,7 +101,6 @@ const getPadlockCombination = () => {
     );
 
   const combinationResult = combinationsWithNonUniqueDigitsFrom(
-    PADLOCK_DIGITS,
     combinationsThatAddUpToTheTotalSumOfDigits
   );
 

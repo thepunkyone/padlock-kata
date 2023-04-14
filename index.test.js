@@ -100,10 +100,7 @@ describe("Padlock Kata", () => {
         combinationWithTwoNonUniqueDigits,
       ];
 
-      const result = combinationsWithNonUniqueDigitsFrom(
-        fullPadlockDigitList,
-        stubbedCombinations
-      );
+      const result = combinationsWithNonUniqueDigitsFrom(stubbedCombinations);
 
       expect(result).toEqual([combinationWithOneNonUniqueDigit]);
     });
