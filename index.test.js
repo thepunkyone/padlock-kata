@@ -4,6 +4,7 @@ const {
   getThirdAndFifthDigitCandidates,
   combinationsThatAddUpToTheTotalSumOfDigitsFrom,
   combinationsWithNonUniqueDigitsFrom,
+  getPadlockCombinations,
 } = require("./index");
 
 describe("Padlock Kata", () => {
@@ -116,6 +117,14 @@ describe("Padlock Kata", () => {
       );
 
       expect(result).toEqual([combinationWithMultipleNonUniqueDigits]);
+    });
+  });
+
+  describe("getPadlockCombinations", () => {
+    it("returns a message with possible padlock combinations where the multiplication product of the first two numbers is 24, the fourth digit is half of the second digit, the sum of the final two digits equals the sum of the first and third digits, the sum total of all numbers is 22, and not all numbers are unique", () => {
+      const result = getPadlockCombinations();
+
+      expect(result).toBe("Your padlock digit combination is 38443 or 46435.");
     });
   });
 });

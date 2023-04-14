@@ -92,10 +92,40 @@ const combinationsWithNonUniqueDigitsFrom = (
   return Array.from(new Set(candidatesWithNonUniqueDigits));
 };
 
+const getPadlockCombinations = () => {
+  const firstTwoDigitCandidates = getFirstTwoDigitCandidates(PADLOCK_DIGITS);
+
+  const fourthDigitCandidates = getFourthDigitCandidates(
+    firstTwoDigitCandidates
+  );
+
+  const thirdAndFifthDigitCandidates = getThirdAndFifthDigitCandidates(
+    PADLOCK_DIGITS,
+    fourthDigitCandidates
+  );
+
+  const combinationsThatAddUpToTheTotalSumOfDigits =
+    combinationsThatAddUpToTheTotalSumOfDigitsFrom(
+      thirdAndFifthDigitCandidates
+    );
+
+  const combinationsResult = combinationsWithNonUniqueDigitsFrom(
+    PADLOCK_DIGITS,
+    combinationsThatAddUpToTheTotalSumOfDigits
+  );
+
+  const combinationsText = combinationsResult
+    .map((combination) => combination.join(""))
+    .join(" or ");
+
+  return `Your padlock digit combination is ${combinationsText}.`;
+};
+
 module.exports = {
   getFirstTwoDigitCandidates,
   getFourthDigitCandidates,
   getThirdAndFifthDigitCandidates,
   combinationsThatAddUpToTheTotalSumOfDigitsFrom,
   combinationsWithNonUniqueDigitsFrom,
+  getPadlockCombinations,
 };
