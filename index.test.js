@@ -1,6 +1,7 @@
 const {
   getFirstTwoDigitCandidates,
   getFourthDigitCandidates,
+  getThirdAndFifthDigitCandidates,
 } = require("./index");
 
 describe("Padlock Kata", () => {
@@ -43,6 +44,27 @@ describe("Padlock Kata", () => {
       const result = getFourthDigitCandidates(stubbedTwoDigitCandidates);
 
       expect(result).toEqual([[4, 6, undefined, 3]]);
+    });
+  });
+
+  describe("getThirdAndFifthDigitCandidates", () => {
+    it("returns all variations of padlock combinations passed in with third and fifth digits added, where the sum of the final two digits equals the sum of the first and third digits", () => {
+      const stubbedPadlockDigitList = [3, 4, 6, 8];
+
+      const stubbedFirstSecondAndFourthDigitCandidates = [
+        [4, 6, undefined, 3],
+        [3, 8, undefined, 4],
+      ];
+
+      const result = getThirdAndFifthDigitCandidates(
+        stubbedPadlockDigitList,
+        stubbedFirstSecondAndFourthDigitCandidates
+      );
+
+      expect(result).toEqual([
+        [4, 6, 3, 3, 4],
+        [3, 8, 4, 4, 3],
+      ]);
     });
   });
 });

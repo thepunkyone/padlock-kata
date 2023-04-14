@@ -36,7 +36,35 @@ const getFourthDigitCandidates = (firstTwoDigitCandidates) => {
   return fourthDigitCandidates;
 };
 
+const getThirdAndFifthDigitCandidates = (
+  padlockDigits,
+  firstSecondAndFourthDigitCandidates
+) => {
+  const thirdAndFifthDigitCandidates = [];
+
+  firstSecondAndFourthDigitCandidates.forEach((candidate) => {
+    padlockDigits.forEach((thirdDigit) => {
+      padlockDigits.forEach((fifthDigit) => {
+        const candidateCopy = [...candidate];
+
+        const firstDigit = candidateCopy[0];
+        const fourthDigit = candidateCopy[3];
+
+        if (firstDigit + thirdDigit === fourthDigit + fifthDigit) {
+          candidateCopy[2] = thirdDigit;
+          candidateCopy[4] = fifthDigit;
+
+          thirdAndFifthDigitCandidates.push(candidateCopy);
+        }
+      });
+    });
+  });
+
+  return thirdAndFifthDigitCandidates;
+};
+
 module.exports = {
   getFirstTwoDigitCandidates,
   getFourthDigitCandidates,
+  getThirdAndFifthDigitCandidates,
 };
