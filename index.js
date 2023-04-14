@@ -79,20 +79,12 @@ const combinationsWithNonUniqueDigitsFrom = (
   padlockDigits,
   candidatesThatAddUpToTheTotalSumOfDigits
 ) => {
-  const candidatesWithNonUniqueDigits = [];
-
-  candidatesThatAddUpToTheTotalSumOfDigits.forEach((candidate) => {
-    padlockDigits.forEach((digit) => {
-      if (candidate.filter((d) => d === digit).length > 1) {
-        candidatesWithNonUniqueDigits.push(candidate);
-      }
-    });
+  return candidatesThatAddUpToTheTotalSumOfDigits.filter((candidate) => {
+    return candidate.length - Array.from(new Set(candidate)).length === 1;
   });
-
-  return Array.from(new Set(candidatesWithNonUniqueDigits));
 };
 
-const getPadlockCombinations = () => {
+const getPadlockCombination = () => {
   const firstTwoDigitCandidates = getFirstTwoDigitCandidates(PADLOCK_DIGITS);
 
   const fourthDigitCandidates = getFourthDigitCandidates(
@@ -109,16 +101,16 @@ const getPadlockCombinations = () => {
       thirdAndFifthDigitCandidates
     );
 
-  const combinationsResult = combinationsWithNonUniqueDigitsFrom(
+  const combinationResult = combinationsWithNonUniqueDigitsFrom(
     PADLOCK_DIGITS,
     combinationsThatAddUpToTheTotalSumOfDigits
   );
 
-  const combinationsText = combinationsResult
+  const combination = combinationResult
     .map((combination) => combination.join(""))
-    .join(" or ");
+    .join("");
 
-  return `Your padlock digit combination is ${combinationsText}.`;
+  return `Your padlock digit combination is ${combination}.`;
 };
 
 module.exports = {
@@ -127,5 +119,5 @@ module.exports = {
   getThirdAndFifthDigitCandidates,
   combinationsThatAddUpToTheTotalSumOfDigitsFrom,
   combinationsWithNonUniqueDigitsFrom,
-  getPadlockCombinations,
+  getPadlockCombination,
 };

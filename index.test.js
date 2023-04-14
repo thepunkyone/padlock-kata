@@ -4,7 +4,7 @@ const {
   getThirdAndFifthDigitCandidates,
   combinationsThatAddUpToTheTotalSumOfDigitsFrom,
   combinationsWithNonUniqueDigitsFrom,
-  getPadlockCombinations,
+  getPadlockCombination,
 } = require("./index");
 
 describe("Padlock Kata", () => {
@@ -91,11 +91,13 @@ describe("Padlock Kata", () => {
   describe("combinationsWithNonUniqueDigitsFrom", () => {
     it("filters padlock combinations passed in, only returning combinations where not all digits are unique", () => {
       const combinationWithUniqueDigits = [1, 2, 3, 4, 5];
-      const combinationWithNonUniqueDigits = [4, 4, 3, 2, 6];
+      const combinationWithOneNonUniqueDigit = [4, 4, 3, 2, 6];
+      const combinationWithTwoNonUniqueDigits = [4, 4, 3, 2, 2];
 
       const stubbedCombinations = [
         combinationWithUniqueDigits,
-        combinationWithNonUniqueDigits,
+        combinationWithOneNonUniqueDigit,
+        combinationWithTwoNonUniqueDigits,
       ];
 
       const result = combinationsWithNonUniqueDigitsFrom(
@@ -103,28 +105,15 @@ describe("Padlock Kata", () => {
         stubbedCombinations
       );
 
-      expect(result).toEqual([combinationWithNonUniqueDigits]);
-    });
-
-    it("removes duplicated combinations from the return value when they are included due to multiple non-unique digits", () => {
-      const combinationWithMultipleNonUniqueDigits = [4, 4, 6, 2, 6];
-
-      const stubbedCombinations = [combinationWithMultipleNonUniqueDigits];
-
-      const result = combinationsWithNonUniqueDigitsFrom(
-        fullPadlockDigitList,
-        stubbedCombinations
-      );
-
-      expect(result).toEqual([combinationWithMultipleNonUniqueDigits]);
+      expect(result).toEqual([combinationWithOneNonUniqueDigit]);
     });
   });
 
-  describe("getPadlockCombinations", () => {
-    it("returns a message with possible padlock combinations where the multiplication product of the first two numbers is 24, the fourth digit is half of the second digit, the sum of the final two digits equals the sum of the first and third digits, the sum total of all numbers is 22, and not all numbers are unique", () => {
-      const result = getPadlockCombinations();
+  describe("getPadlockCombination", () => {
+    it("returns a message with the padlock combination where the multiplication product of the first two numbers is 24, the fourth digit is half of the second digit, the sum of the final two digits equals the sum of the first and third digits, the sum total of all numbers is 22, and not all numbers are unique", () => {
+      const result = getPadlockCombination();
 
-      expect(result).toBe("Your padlock digit combination is 38443 or 46435.");
+      expect(result).toBe("Your padlock digit combination is 46435.");
     });
   });
 });
