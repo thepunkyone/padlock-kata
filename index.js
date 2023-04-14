@@ -19,6 +19,24 @@ const getFirstTwoDigitCandidates = (padlockDigits) => {
   return firstTwoDigitCandidates;
 };
 
+const getFourthDigitCandidates = (firstTwoDigitCandidates) => {
+  const fourthDigitCandidates = [];
+
+  firstTwoDigitCandidates.forEach((candidate) => {
+    const fourthDigit = candidate[1] / 2;
+
+    if (Math.floor(fourthDigit) === fourthDigit) {
+      const candidateCopy = [...candidate];
+      candidateCopy[3] = fourthDigit;
+
+      fourthDigitCandidates.push(candidateCopy);
+    }
+  });
+
+  return fourthDigitCandidates;
+};
+
 module.exports = {
   getFirstTwoDigitCandidates,
+  getFourthDigitCandidates,
 };
