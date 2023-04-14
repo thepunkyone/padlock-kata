@@ -63,8 +63,21 @@ const getThirdAndFifthDigitCandidates = (
   return thirdAndFifthDigitCandidates;
 };
 
+const combinationsThatAddUpToTheTotalSumOfDigitsFrom = (
+  candidatesWithThirdAndFifthDigits
+) => {
+  return candidatesWithThirdAndFifthDigits.filter((candidate) => {
+    const candidateSum = candidate.reduce((acc, currentVal) => {
+      return acc + currentVal;
+    });
+
+    return candidateSum === SUM_OF_ALL_DIGITS;
+  });
+};
+
 module.exports = {
   getFirstTwoDigitCandidates,
   getFourthDigitCandidates,
   getThirdAndFifthDigitCandidates,
+  combinationsThatAddUpToTheTotalSumOfDigitsFrom,
 };

@@ -2,6 +2,7 @@ const {
   getFirstTwoDigitCandidates,
   getFourthDigitCandidates,
   getThirdAndFifthDigitCandidates,
+  combinationsThatAddUpToTheTotalSumOfDigitsFrom,
 } = require("./index");
 
 describe("Padlock Kata", () => {
@@ -65,6 +66,23 @@ describe("Padlock Kata", () => {
         [4, 6, 3, 3, 4],
         [3, 8, 4, 4, 3],
       ]);
+    });
+  });
+
+  describe("combinationsThatAddUpToTheTotalSumOfDigitsFrom", () => {
+    it("filters padlock combinations passed in, only returning combinations where the total sum of all digits is 22", () => {
+      const combinationWhichDoesNotAddUpTo22 = [1, 2, 3, 4, 5];
+      const combinationWhichAddsUpTo22 = [4, 4, 6, 2, 6];
+
+      const stubbedCombinations = [
+        combinationWhichDoesNotAddUpTo22,
+        combinationWhichAddsUpTo22,
+      ];
+
+      const result =
+        combinationsThatAddUpToTheTotalSumOfDigitsFrom(stubbedCombinations);
+
+      expect(result).toEqual([combinationWhichAddsUpTo22]);
     });
   });
 });
