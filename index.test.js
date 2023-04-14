@@ -91,7 +91,7 @@ describe("Padlock Kata", () => {
   describe("combinationsWithNonUniqueDigitsFrom", () => {
     it("filters padlock combinations passed in, only returning combinations where not all digits are unique", () => {
       const combinationWithUniqueDigits = [1, 2, 3, 4, 5];
-      const combinationWithNonUniqueDigits = [4, 4, 6, 2, 6];
+      const combinationWithNonUniqueDigits = [4, 4, 3, 2, 6];
 
       const stubbedCombinations = [
         combinationWithUniqueDigits,
