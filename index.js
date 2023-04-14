@@ -77,11 +77,11 @@ const combinationsThatAddUpToTheTotalSumOfDigitsFrom = (
 
 const combinationsWithNonUniqueDigitsFrom = (
   padlockDigits,
-  candidatesThatAddUpTo22
+  candidatesThatAddUpToTheTotalSumOfDigits
 ) => {
   const candidatesWithNonUniqueDigits = [];
 
-  candidatesThatAddUpTo22.forEach((candidate) => {
+  candidatesThatAddUpToTheTotalSumOfDigits.forEach((candidate) => {
     padlockDigits.forEach((digit) => {
       if (candidate.filter((d) => d === digit).length > 1) {
         candidatesWithNonUniqueDigits.push(candidate);
