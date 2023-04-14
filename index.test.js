@@ -3,6 +3,7 @@ const {
   getFourthDigitCandidates,
   getThirdAndFifthDigitCandidates,
   combinationsThatAddUpToTheTotalSumOfDigitsFrom,
+  combinationsWithNonUniqueDigitsFrom,
 } = require("./index");
 
 describe("Padlock Kata", () => {
@@ -83,6 +84,38 @@ describe("Padlock Kata", () => {
         combinationsThatAddUpToTheTotalSumOfDigitsFrom(stubbedCombinations);
 
       expect(result).toEqual([combinationWhichAddsUpTo22]);
+    });
+  });
+
+  describe("combinationsWithNonUniqueDigitsFrom", () => {
+    it("filters padlock combinations passed in, only returning combinations where not all digits are unique", () => {
+      const combinationWithUniqueDigits = [1, 2, 3, 4, 5];
+      const combinationWithNonUniqueDigits = [4, 4, 6, 2, 6];
+
+      const stubbedCombinations = [
+        combinationWithUniqueDigits,
+        combinationWithNonUniqueDigits,
+      ];
+
+      const result = combinationsWithNonUniqueDigitsFrom(
+        fullPadlockDigitList,
+        stubbedCombinations
+      );
+
+      expect(result).toEqual([combinationWithNonUniqueDigits]);
+    });
+
+    it("removes duplicated combinations from the return value when they are included due to multiple non-unique digits", () => {
+      const combinationWithMultipleNonUniqueDigits = [4, 4, 6, 2, 6];
+
+      const stubbedCombinations = [combinationWithMultipleNonUniqueDigits];
+
+      const result = combinationsWithNonUniqueDigitsFrom(
+        fullPadlockDigitList,
+        stubbedCombinations
+      );
+
+      expect(result).toEqual([combinationWithMultipleNonUniqueDigits]);
     });
   });
 });

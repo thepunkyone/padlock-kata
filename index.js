@@ -75,9 +75,27 @@ const combinationsThatAddUpToTheTotalSumOfDigitsFrom = (
   });
 };
 
+const combinationsWithNonUniqueDigitsFrom = (
+  padlockDigits,
+  candidatesThatAddUpTo22
+) => {
+  const candidatesWithNonUniqueDigits = [];
+
+  candidatesThatAddUpTo22.forEach((candidate) => {
+    padlockDigits.forEach((digit) => {
+      if (candidate.filter((d) => d === digit).length > 1) {
+        candidatesWithNonUniqueDigits.push(candidate);
+      }
+    });
+  });
+
+  return Array.from(new Set(candidatesWithNonUniqueDigits));
+};
+
 module.exports = {
   getFirstTwoDigitCandidates,
   getFourthDigitCandidates,
   getThirdAndFifthDigitCandidates,
   combinationsThatAddUpToTheTotalSumOfDigitsFrom,
+  combinationsWithNonUniqueDigitsFrom,
 };
